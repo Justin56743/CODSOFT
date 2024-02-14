@@ -1,0 +1,36 @@
+import re
+
+# Define a dictionary of rules
+rules = {
+
+"(what's your name|who are you)": "My name is Jarvis. I am an AI language model.",
+"(what is the time)": "The current time is 8:55 IST on Febraury 14, 2024.",
+"(what is the weather like today)": "Could you please provide your location so I can check the weather for you?",
+"(what is the news today)": "Would you like to know about global news or news from a specific category?",
+"(what are your capabilities)": "I can assist with generating text, translating languages, creating various types of content, and providing informative responses to questions.",
+"(how much do you charge)": "There is currently no charge to use my services.",
+"(how do I utilize your features)": "To access my features, simply type your query or request, and I'll do my best to assist you.",
+"(I'd like to schedule an appointment with Dr. Smith)": "Certainly. When would you prefer your appointment?",
+"(I'd like to purchase a size 10 blue t-shirt)": "Sure, may I know your preferred delivery address?",
+"(I'm experiencing issues with my account)": "Please provide more details about the problem so I can assist you effectively."
+
+}
+# Define a function to match user queries to rules
+def match_rule(query):
+    for pattern, response in rules.items():
+        if re.match(pattern, query):
+            return response
+    return None
+
+# Define a function to generate a response to a user query
+def generate_response(query):
+    response = match_rule(query)
+    if response is None:
+        response = "I don't understand your query. Please try again."
+    return response
+
+# Start the chatbot loop
+while True:
+    user_query = input("User: ")
+    response = generate_response(user_query)
+    print(f"Chatbot: {response}")
